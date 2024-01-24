@@ -6,6 +6,7 @@ import David.Hotel.Repositories.ReservationsRepo;
 import David.Hotel.Repositories.RoomsRepo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -14,7 +15,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationsRepo reservationsRepo;
 
 
-    public ReservationServiceImpl(ReservationsRepo reservationsRepo, RoomsRepo roomsRepo) {
+    public ReservationServiceImpl(ReservationsRepo reservationsRepo) {
         this.reservationsRepo = reservationsRepo;
     }
 
@@ -35,14 +36,15 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
 
-    @Override
-    public List <Reservations> findBookings() {
-        return reservationsRepo.findAll();
-    }
 
 
     @Override
-    public Reservations getBooking(Integer roomNumber) {
-        return reservationsRepo.findAllByRoomNumber(String.valueOf(roomNumber)).orElseThrow();
-    }
-}
+    public String isRoomBookedInDateRange(String roomNumber, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        List<Reservations> bookings = reservationsRepo.findBookingsInDateRange(roomNumber, startDateTime, endDateTime);
+        if (!bookings.isEmpty()) {
+            return "თავისუფალია.";
+        } else {
+            return "დაკავებულია";
+        }
+    }    }
+

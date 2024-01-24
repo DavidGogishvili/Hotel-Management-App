@@ -49,7 +49,12 @@ public class Guests extends BaseEntity{
     @Column(name = "citizenship")
     private String citizenship;
 
+    @Column (name = "age")
+    private Integer age;
 
+    public void preInsert() {
+        age = getAge();
+    }
     public Integer getAge() {
         if (birthDate != null) {
             return Period.between(birthDate, LocalDate.now()).getYears();

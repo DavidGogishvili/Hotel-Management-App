@@ -3,15 +3,22 @@ package David.Hotel.Services;
 import David.Hotel.Entities.Reservations;
 import David.Hotel.Models.ReservationCreateModel;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 public interface ReservationService {
+
+    String isRoomBookedInDateRange(String roomNumber, LocalDateTime startDateTime, LocalDateTime endDateTime);
+
+
 
     Reservations createBooking(ReservationCreateModel reservationCreateModel);
 
 
-    List<Reservations> findBookings ();
 
-    Reservations getBooking (Integer roomNumber);
+
+
+
+
+
 
 }
