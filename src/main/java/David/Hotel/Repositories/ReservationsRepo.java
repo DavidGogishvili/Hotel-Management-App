@@ -14,7 +14,7 @@ public interface ReservationsRepo extends JpaRepository <Reservations, Integer> 
 
     @Query(value = "SELECT t.* FROM bookings t WHERE room_number = :roomNumber " +
             "AND ((booked_at > :startDateTime AND booked_at < :endDateTime) " +
-            "OR (booked_till > :startDateTime AND booked_till < :endDateTime)) LIMIT 501", nativeQuery = true)
+            "OR (booked_till > :startDateTime AND booked_till < :endDateTime))", nativeQuery = true)
     List<Reservations> findBookingsInDateRange(@Param("roomNumber") String roomNumber,
                                           @Param("startDateTime") LocalDateTime startDateTime,
                                           @Param("endDateTime") LocalDateTime endDateTime);

@@ -14,9 +14,12 @@ public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationsRepo reservationsRepo;
 
+    private final RoomsRepo roomsRepo;
 
-    public ReservationServiceImpl(ReservationsRepo reservationsRepo) {
+
+    public ReservationServiceImpl(ReservationsRepo reservationsRepo, RoomsRepo roomsRepo) {
         this.reservationsRepo = reservationsRepo;
+        this.roomsRepo = roomsRepo;
     }
 
     @Override
@@ -36,15 +39,24 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
 
-
-
-    @Override
+     @Override
     public String isRoomBookedInDateRange(String roomNumber, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+         if (!roomExists(roomNumber)) {
+             throw new RuntimeException("ოთახი ნომრით N " + roomNumber + " ჯერ არ გვაქვს სასტუმროში, ბოდიში :)");
+         }
         List<Reservations> bookings = reservationsRepo.findBookingsInDateRange(roomNumber, startDateTime, endDateTime);
-        if (!bookings.isEmpty()) {
-            return "თავისუფალია.";
-        } else {
-            return "დაკავებულია";
-        }
-    }    }
+         if (!bookings.isEmpty()) {
+             return "ოთახი აღნიშნულ ვადებში თავისუფალია.";
+         } else {
+             return "ოთახი აღნიშნულ ვადებში არ არის თავისუფალი.";
+         }
+              }
+
+
+    private boolean roomExists(String roomNumber) {
+             return roomsRepo.existsByRoomNumber(roomNumber);
+    }
+
+
+}
 

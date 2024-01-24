@@ -31,8 +31,6 @@ public class ReservationController {
     }
 
 
-
-
     @PostMapping("/isRoomBooked")
     public String isRoomBookedInDateRange(@RequestBody ReservationRequestModel request) {
         return reservationService.isRoomBookedInDateRange(request.getRoomNumber(), request.getStartDateTime(), request.getEndDateTime());

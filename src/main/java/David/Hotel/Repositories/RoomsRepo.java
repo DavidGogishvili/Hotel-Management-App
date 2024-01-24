@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface RoomsRepo extends JpaRepository <Rooms, Integer> {
 
-   }
+    boolean existsByRoomNumber(String roomNumber);
+}
