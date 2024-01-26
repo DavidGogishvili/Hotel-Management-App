@@ -19,10 +19,7 @@ public record ReservationCreateModel(
 
         String price,
 
-        String promotion,
-
-        String promotionalPrice
-
+        String promotion
 
 ) {
 }

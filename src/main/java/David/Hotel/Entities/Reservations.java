@@ -11,7 +11,7 @@ import java.time.temporal.ChronoUnit;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(schema = "public", name = "bookings")
+@Table(schema = "public", name = "reservations")
 public class Reservations extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "books_id_seq-generator")
     @SequenceGenerator(name = "books_id_seq-generator", sequenceName = "books_id_seq", allocationSize = 1)
@@ -37,19 +37,36 @@ public class Reservations extends BaseEntity {
     private String bookedFrom;
 
     @Column(name = "price")
-    private String price;
+    private Double price;
 
     @Column(name = "promotion")
-    private String promotion;
+    private Double promotion;
 
     @Column(name = "promotional_price")
-    private String promotionalPrice;
+    private Double promotionalPrice;
 
     @Column(name = "book_interval")
     private String booked;
 
+    @Column (name = "tax")
+    private Double tax;
+
     public void preInsert() {
         booked = calculateBookedInterval();
+        tax = tax();
+        price = price();
+        promotionalPrice = calculatePromotionalPrice();
+
+    }
+
+    private Double tax() {
+        tax = 0.18;
+        return tax;
+    }
+
+    private Double price() {
+        price = price + (price* tax);
+        return price;
     }
 
     private String calculateBookedInterval() {
@@ -64,6 +81,16 @@ public class Reservations extends BaseEntity {
         }
 
     }
+    private Double calculatePromotionalPrice() {
+    Double promotion = this.getPromotion();
+    if (promotion !=null && price != null) {
+        promotionalPrice = price - (price * promotion);
+    } else if ( promotion == null) {
+        return price;
+    }
+    return promotionalPrice;
+    }
+
 
 
 }
