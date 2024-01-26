@@ -34,9 +34,10 @@ public class BaseEntity {
 
 
     @PrePersist
-    public void preInsert () {
+    public void preInsert1 () {
         createdBy = UserManager.getCurrentUser().getId();
         createdAt = LocalDateTime.now();
+        preInsert();
     }
 
 
@@ -47,6 +48,8 @@ public class BaseEntity {
         changedAt = LocalDateTime.now();
     }
 
+    public void preInsert() {
 
+    }
 }
 

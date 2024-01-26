@@ -1,5 +1,6 @@
 package David.Hotel.Models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record ReservationCreateModel(
@@ -8,9 +9,9 @@ public record ReservationCreateModel(
 
         Integer roomNumber,
 
-        LocalDateTime bookedAt,
+        LocalDateTime startDateTime,
 
-        LocalDateTime bookedTill,
+        LocalDateTime endDateTime,
 
         Integer bookedBy,
 

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -52,14 +53,17 @@ public class Reservations extends BaseEntity {
     }
 
     private String calculateBookedInterval() {
-        LocalDateTime bookedAt = this.getBookedAt();
-        LocalDateTime bookedTill = this.getBookedTill();
+        LocalDateTime startDateTime = this.getBookedAt();
+        LocalDateTime endDateTime = this.getBookedTill();
 
-        if (bookedAt != null && bookedTill != null) {
+        if (startDateTime != null && endDateTime != null) {
             long days = ChronoUnit.DAYS.between(bookedAt, bookedTill);
             return String.valueOf(days);
         } else {
-            throw new IllegalStateException("ვერ ვითვლი დაჯავშნილ დღეებს, სორი :)");
+            throw new IllegalStateException("რომელიღაც თარიღს არასწორად უთითებ ბრო, ვერ ვითვლი დაჯავშნილ დღეებს, სორი :)");
         }
+
     }
+
+
 }

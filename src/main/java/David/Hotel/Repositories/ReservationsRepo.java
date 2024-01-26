@@ -5,12 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 public interface ReservationsRepo extends JpaRepository <Reservations, Integer> {
 
+    boolean existsByRoomNumber(String roomNumber);
 
     @Query(value = "SELECT t.* FROM bookings t WHERE room_number = :roomNumber " +
             "AND ((booked_at > :startDateTime AND booked_at < :endDateTime) " +
