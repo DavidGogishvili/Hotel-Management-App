@@ -15,8 +15,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final RoomsRepo roomsRepo;
 
 
-
-    public ReservationServiceImpl(ReservationsRepo reservationsRepo, RoomsRepo roomsRepo) {
+    public ReservationServiceImpl(ReservationsRepo reservationsRepo,RoomsRepo roomsRepo) {
         this.reservationsRepo = reservationsRepo;
         this.roomsRepo = roomsRepo;
     }
@@ -29,6 +28,9 @@ public class ReservationServiceImpl implements ReservationService {
         LocalDateTime startDateTime = reservationCreateModel.startDateTime();
         LocalDateTime endDateTime = reservationCreateModel.endDateTime();
 
+        if (!roomsRepo.existsByRoomNumber(roomNumber.toString())) {
+            throw new RuntimeException("არა ბრტ, სხვა ნომერი გინდა");
+        }
         List<Reservations> exitingReservations = reservationsRepo.findBookingsInDateRange(roomNumber.toString(), startDateTime, endDateTime);
         if (!exitingReservations.isEmpty()) {
             throw new RuntimeException("ოთახი აღნიშნულ ვადებში უკვე დაჯავშნილია.");
@@ -50,7 +52,9 @@ public class ReservationServiceImpl implements ReservationService {
     public String isRoomBookedInDateRange(String roomNumber, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         List<Reservations> existingReservations = reservationsRepo.findBookingsInDateRange(
                 roomNumber, startDateTime, endDateTime);
-
+        if (!roomsRepo.existsByRoomNumber(roomNumber)) {
+            throw new RuntimeException("არასწორ ნომერს ეძებ ძმა, ეგეთი არ გვაქვს");
+        }
         if (!existingReservations.isEmpty()) {
             return "ოთახი აღნიშნულ ვადებში დაჯავშნილია.";
         } else {

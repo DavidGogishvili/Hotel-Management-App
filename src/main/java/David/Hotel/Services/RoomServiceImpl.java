@@ -16,6 +16,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Rooms createRoom(RoomCreateModel roomCreateModel) {
+        if (roomsRepo.existsByRoomNumber(roomCreateModel.roomNumber())) {
+            throw new RuntimeException("ბრაატ, ეგ ნომერი არსებობს უკვე :)");
+        }
         Rooms rooms = new Rooms();
         rooms.setRoomNumber(roomCreateModel.roomNumber());
         rooms.setNumberOfBed(Integer.valueOf(roomCreateModel.beds()));
