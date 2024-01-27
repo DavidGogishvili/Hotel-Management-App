@@ -12,8 +12,6 @@ public record RoomCreateModel(
 
         String available,
 
-        Double priceForNight,
-
         Integer floor
 
 ) {

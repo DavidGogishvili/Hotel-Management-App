@@ -42,8 +42,14 @@ public class ReservationServiceImpl implements ReservationService {
         reservations.setBookedTill(reservationCreateModel.endDateTime());
         reservations.setBookedBy(reservationCreateModel.bookedBy());
         reservations.setBookedFrom(reservationCreateModel.bookedFrom());
-        reservations.setPrice(Double.valueOf(reservationCreateModel.price()));
-        reservations.setPromotion(Double.valueOf(reservationCreateModel.promotion()));
+        String roomCategory = roomsRepo.findRoomCategoryByRoomNumber(roomNumber.toString());
+          if ("standard".equals(roomCategory)) {
+                reservations.setPrice(400.0);
+          } else if ("lux".equals(roomCategory)) {
+                reservations.setPrice(1000.0);
+          }
+            reservations.preInsert();
+            reservations.setPromotion(Double.valueOf(reservationCreateModel.promotion()));
         reservationsRepo.save(reservations);
         return reservations;
     }}

@@ -65,7 +65,7 @@ public class Reservations extends BaseEntity {
     }
 
     private Double price() {
-        price = price + (price* tax);
+        price = price + (price*tax);
         return price;
     }
 

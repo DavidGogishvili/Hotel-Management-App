@@ -22,13 +22,11 @@ public class RoomServiceImpl implements RoomService {
         Rooms rooms = new Rooms();
         rooms.setRoomNumber(roomCreateModel.roomNumber());
         rooms.setNumberOfBed(Integer.valueOf(roomCreateModel.beds()));
-        rooms.setStandardRoom(Boolean.valueOf(roomCreateModel.standardRoom()));
+        rooms.setStandardRoom(roomCreateModel.standardRoom());
         rooms.setAvailable(Boolean.valueOf(roomCreateModel.available()));
-        rooms.setPriceForNight(roomCreateModel.priceForNight());
         rooms.setFloor(roomCreateModel.floor());
         roomsRepo.save(rooms);
         return rooms;
-
 
     }
 }

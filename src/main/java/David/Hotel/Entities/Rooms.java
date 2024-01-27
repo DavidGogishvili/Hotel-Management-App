@@ -23,14 +23,11 @@ public class Rooms extends BaseEntity {
     @Column (name = "beds")
     private Integer numberOfBed;
 
-    @Column (name = "isstandart")
-    private Boolean standardRoom;
+    @Column (name = "category")
+    private String standardRoom;
 
     @Column (name = "isavalable")
     private Boolean available;
-
-    @Column (name = "one_night_price")
-    private Double priceForNight;
 
     @Column (name = "floor")
     private Integer floor;

@@ -17,8 +17,6 @@ public record ReservationCreateModel(
 
         String bookedFrom,
 
-        String price,
-
         String promotion
 
 ) {
