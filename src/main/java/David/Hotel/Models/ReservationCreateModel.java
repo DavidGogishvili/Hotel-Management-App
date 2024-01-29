@@ -1,6 +1,5 @@
 package David.Hotel.Models;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record ReservationCreateModel(

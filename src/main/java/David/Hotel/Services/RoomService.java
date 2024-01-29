@@ -6,4 +6,5 @@ import David.Hotel.Models.RoomCreateModel;
 public interface RoomService {
 
     Rooms createRoom (RoomCreateModel roomCreateModel);
+
 }

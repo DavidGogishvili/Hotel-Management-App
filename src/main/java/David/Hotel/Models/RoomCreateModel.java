@@ -1,18 +1,12 @@
 package David.Hotel.Models;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 public record RoomCreateModel(
         String roomNumber,
 
-        String beds,
+        Integer floor,
 
-        String standardRoom,
-
-        String available,
-
-        Integer floor
-
+        String category
 ) {
 }

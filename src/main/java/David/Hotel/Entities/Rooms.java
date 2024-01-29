@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -20,14 +19,8 @@ public class Rooms extends BaseEntity {
     @Column(name = "room_number")
     private String roomNumber;
 
-    @Column (name = "beds")
-    private Integer numberOfBed;
-
     @Column (name = "category")
-    private String standardRoom;
-
-    @Column (name = "isavalable")
-    private Boolean available;
+    private String category;
 
     @Column (name = "floor")
     private Integer floor;

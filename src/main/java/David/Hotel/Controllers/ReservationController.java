@@ -5,7 +5,6 @@ import David.Hotel.Entities.Reservations;
 import David.Hotel.Models.ReservationRequestModel;
 import David.Hotel.Models.ReservationCreateModel;
 import David.Hotel.Repositories.ReservationsRepo;
-import David.Hotel.Repositories.RoomsRepo;
 import David.Hotel.Services.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -44,6 +43,7 @@ public class ReservationController {
         return reservationService.isRoomBookedInDateRange(request.getRoomNumber(),
                 request.getStartDateTime(), request.getEndDateTime());
     }
+
 
 
 }

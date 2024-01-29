@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -51,45 +50,30 @@ public class Reservations extends BaseEntity {
     @Column (name = "tax")
     private Double tax;
 
-    public void preInsert() {
-        booked = calculateBookedInterval();
-        tax = tax();
-        price = price();
-        promotionalPrice = calculatePromotionalPrice();
 
-    }
 
-    private Double tax() {
-        tax = 0.18;
-        return tax;
-    }
 
-    private Double price() {
-        price = price + (price*tax);
-        return price;
-    }
-
-    private String calculateBookedInterval() {
-        LocalDateTime startDateTime = this.getBookedAt();
-        LocalDateTime endDateTime = this.getBookedTill();
-
-        if (startDateTime != null && endDateTime != null) {
-            long days = ChronoUnit.DAYS.between(bookedAt, bookedTill);
-            return String.valueOf(days);
-        } else {
-            throw new IllegalStateException("რომელიღაც თარიღს არასწორად უთითებ ბრო, ვერ ვითვლი დაჯავშნილ დღეებს, სორი :)");
-        }
-
-    }
-    private Double calculatePromotionalPrice() {
-    Double promotion = this.getPromotion();
-    if (promotion !=null && price != null) {
-        promotionalPrice = price - (price * promotion);
-    } else if ( promotion == null) {
-        return price;
-    }
-    return promotionalPrice;
-    }
+//    private String calculateBookedInterval() {
+//        LocalDateTime startDateTime = this.getBookedAt();
+//        LocalDateTime endDateTime = this.getBookedTill();
+//
+//        if (startDateTime != null && endDateTime != null) {
+//            long days = ChronoUnit.DAYS.between(bookedAt, bookedTill);
+//            return String.valueOf(days);
+//        } else {
+//            throw new IllegalStateException("რომელიღაც თარიღს არასწორად უთითებ ბრო, ვერ ვითვლი დაჯავშნილ დღეებს, სორი :)");
+//        }
+//
+//    }
+//    private Double calculatePromotionalPrice() {
+//    Double promotion = this.getPromotion();
+//    if (promotion !=null && price != null) {
+//        promotionalPrice = price - (price * promotion);
+//    } else if ( promotion == null) {
+//        return price;
+//    }
+//    return promotionalPrice;
+//    }
 
 
 

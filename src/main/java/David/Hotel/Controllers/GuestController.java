@@ -1,9 +1,7 @@
 package David.Hotel.Controllers;
 
 import David.Hotel.Entities.Guests;
-import David.Hotel.Entities.Reservations;
 import David.Hotel.Models.GuestCreateModel;
-import David.Hotel.Models.ReservationCreateModel;
 import David.Hotel.Repositories.GuestsRepo;
 import David.Hotel.Services.GuestService;
 import lombok.RequiredArgsConstructor;
