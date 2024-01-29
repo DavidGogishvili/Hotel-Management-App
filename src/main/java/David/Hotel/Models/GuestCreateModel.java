@@ -9,7 +9,7 @@ public record GuestCreateModel(
 
         String phoneNumber,
 
-        Integer personalNumber,
+        String personalNumber,
 
         String email,
 

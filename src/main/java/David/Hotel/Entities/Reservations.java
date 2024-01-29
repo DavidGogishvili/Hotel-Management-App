@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -17,7 +16,7 @@ public class Reservations extends BaseEntity {
     @Id
     private Integer id;
 
-    @Column(name = "book_number")
+    @Column(name = "book_number", columnDefinition = "BIGSERIAL")
     private Integer bookNumber;
 
     @Column(name = "room_number")
@@ -49,32 +48,5 @@ public class Reservations extends BaseEntity {
 
     @Column (name = "tax")
     private Double tax;
-
-
-
-
-//    private String calculateBookedInterval() {
-//        LocalDateTime startDateTime = this.getBookedAt();
-//        LocalDateTime endDateTime = this.getBookedTill();
-//
-//        if (startDateTime != null && endDateTime != null) {
-//            long days = ChronoUnit.DAYS.between(bookedAt, bookedTill);
-//            return String.valueOf(days);
-//        } else {
-//            throw new IllegalStateException("რომელიღაც თარიღს არასწორად უთითებ ბრო, ვერ ვითვლი დაჯავშნილ დღეებს, სორი :)");
-//        }
-//
-//    }
-//    private Double calculatePromotionalPrice() {
-//    Double promotion = this.getPromotion();
-//    if (promotion !=null && price != null) {
-//        promotionalPrice = price - (price * promotion);
-//    } else if ( promotion == null) {
-//        return price;
-//    }
-//    return promotionalPrice;
-//    }
-
-
 
 }

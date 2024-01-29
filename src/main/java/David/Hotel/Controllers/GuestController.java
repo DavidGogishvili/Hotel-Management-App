@@ -28,7 +28,7 @@ public class GuestController {
     }
 
     @GetMapping("/find/{personalNumber}")
-    public Guests guest (@PathVariable Integer personalNumber) {
+    public Guests guest (@PathVariable String personalNumber) {
         return guestService.findAllByPersonalNumber(personalNumber);
     }
 }

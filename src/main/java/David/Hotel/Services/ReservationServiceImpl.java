@@ -37,22 +37,20 @@ public class ReservationServiceImpl implements ReservationService {
             throw new RuntimeException("ოთახი აღნიშნულ ვადებში უკვე დაჯავშნილია.");
         } else {
         Reservations reservations = new Reservations();
-        reservations.setBookNumber(reservationCreateModel.bookNumber());
         reservations.setRoomNumber(String.valueOf(reservationCreateModel.roomNumber()));
         reservations.setBookedAt(reservationCreateModel.startDateTime());
         reservations.setBookedTill(reservationCreateModel.endDateTime());
         reservations.setBookedBy(reservationCreateModel.bookedBy());
         reservations.setBookedFrom(reservationCreateModel.bookedFrom());
         String roomCategory = roomsRepo.findRoomCategoryByRoomNumber(roomNumber.toString());
-          if ("standard 1 bed".equals(roomCategory)) {
-                reservations.setPrice(100.0);
-          } else if ("standard 2 bed".equals(roomCategory)) {
-              reservations.setPrice(200.0);
-          } else if ("standard 3 bed".equals(roomCategory)) {
-              reservations.setPrice(300.0);
-          } else if ("lux".equals(roomCategory)) {
-                reservations.setPrice(1000.0);
-          }
+        if (roomCategory !=null) {
+            switch (roomCategory) {
+                case "standard 1 bed" -> reservations.setPrice(100.0);
+                case "standard 2 bed" -> reservations.setPrice(200.0);
+                case "standard 3 bed" -> reservations.setPrice(300.0);
+                case "lux" -> reservations.setPrice(1000.0);
+            }
+        }
             reservations.setPromotion(Double.valueOf(reservationCreateModel.promotion()));
             reservations.setTax(0.18);
             reservations.setPrice(reservations.getPrice() + (reservations.getPrice() * reservations.getTax()));
@@ -62,7 +60,7 @@ public class ReservationServiceImpl implements ReservationService {
             reservationsRepo.save(reservations);
         return reservations;
     }
-    }
+}
 
     @Override
     public String isRoomBookedInDateRange(String roomNumber, LocalDateTime startDateTime, LocalDateTime endDateTime) {

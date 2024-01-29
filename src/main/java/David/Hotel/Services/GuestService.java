@@ -7,5 +7,5 @@ public interface GuestService {
 
     Guests createGuest (GuestCreateModel guestCreateModel);
 
-    Guests findAllByPersonalNumber (Integer personalNumber);
+    Guests findAllByPersonalNumber(String personalNumber);
 }

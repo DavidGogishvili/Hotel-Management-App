@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 public record ReservationCreateModel(
 
-        Integer bookNumber,
-
         Integer roomNumber,
 
         LocalDateTime startDateTime,

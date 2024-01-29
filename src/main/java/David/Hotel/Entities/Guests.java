@@ -32,7 +32,7 @@ public class Guests extends BaseEntity{
     private String email;
 
     @Column(name = "personal_number")
-    private Integer personalNumber;
+    private String personalNumber;
 
     @Column(name = "birthdate")
     private LocalDate birthDate;
@@ -52,13 +52,5 @@ public class Guests extends BaseEntity{
     @Column (name = "age")
     private Integer age;
 
-    public void preInsert() {
-        age = getAge();
-    }
-    public Integer getAge() {
-        if (birthDate != null) {
-            return Period.between(birthDate, LocalDate.now()).getYears();
-        }
-        return null;
-    }
+
 }
