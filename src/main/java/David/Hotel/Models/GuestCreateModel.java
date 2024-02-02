@@ -9,21 +9,18 @@ public record GuestCreateModel(
 
         String phoneNumber,
 
-        String personalNumber,
-
         String email,
 
         LocalDate birthDate,
 
         String gender,
 
-        Boolean isGeorgian,
+        String citizenship,
 
-        String passportNumber,
-
-        String citizenship
+        String identification
 
 
 
 ) {
+
 }

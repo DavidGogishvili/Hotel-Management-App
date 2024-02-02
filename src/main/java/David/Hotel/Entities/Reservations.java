@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Random;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -16,7 +18,8 @@ public class Reservations extends BaseEntity {
     @Id
     private Integer id;
 
-    @Column(name = "book_number", columnDefinition = "BIGSERIAL")
+
+    @Column(name = "book_number")
     private Integer bookNumber;
 
     @Column(name = "room_number")
@@ -28,7 +31,7 @@ public class Reservations extends BaseEntity {
     @Column(name = "booked_till")
     private LocalDateTime bookedTill;
 
-    @Column(name = "booked_by")
+    @Column (name = "booked_by")
     private Integer bookedBy;
 
     @Column(name = "booked_from")
@@ -48,5 +51,8 @@ public class Reservations extends BaseEntity {
 
     @Column (name = "tax")
     private Double tax;
+
+
+
 
 }

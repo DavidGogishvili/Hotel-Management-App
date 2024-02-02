@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -44,6 +43,9 @@ public class ReservationController {
                 request.getStartDateTime(), request.getEndDateTime());
     }
 
-
+    @GetMapping("/{bookNumber}")
+    public Reservations reservations (@PathVariable Integer bookNumber) {
+        return reservationService.getReservations(bookNumber);
+    }
 
 }

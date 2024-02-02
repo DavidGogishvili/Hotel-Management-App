@@ -5,7 +5,7 @@ import David.Hotel.Models.GuestCreateModel;
 
 public interface GuestService {
 
+
     Guests createGuest (GuestCreateModel guestCreateModel);
 
-    Guests findAllByPersonalNumber(String personalNumber);
 }

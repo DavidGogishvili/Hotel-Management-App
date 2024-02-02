@@ -7,8 +7,4 @@ import java.util.Optional;
 
 public interface GuestsRepo extends JpaRepository <Guests, Integer> {
 
-
-    Optional <Guests> findAllByPersonalNumber (String personalNumber);
-
-    boolean existsByPersonalNumber (String personalNumber);
 }

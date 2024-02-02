@@ -31,20 +31,11 @@ public class Guests extends BaseEntity{
     @Column(name = "email")
     private String email;
 
-    @Column(name = "personal_number")
-    private String personalNumber;
-
     @Column(name = "birthdate")
     private LocalDate birthDate;
 
     @Column(name = "gender")
     private String gender;
-
-    @Column(name = "isgeorgian")
-    private Boolean isGeorgian;
-
-    @Column(name = "foreign_passport_number")
-    private String passportNumber;
 
     @Column(name = "citizenship")
     private String citizenship;
@@ -52,5 +43,7 @@ public class Guests extends BaseEntity{
     @Column (name = "age")
     private Integer age;
 
-
+    @OneToOne
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private GuestDocuments guestDocuments;
 }
