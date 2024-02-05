@@ -1,5 +1,6 @@
 package David.Hotel.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,6 +8,7 @@ import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -43,7 +45,9 @@ public class Guests extends BaseEntity{
     @Column (name = "age")
     private Integer age;
 
-    @OneToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private GuestDocuments guestDocuments;
+
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "guest_id", insertable = false, updatable = false)
+    private List<GuestDocuments> guestDocuments;
 }

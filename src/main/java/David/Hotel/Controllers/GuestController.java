@@ -35,17 +35,14 @@ public class GuestController {
     }
 
 
-
-
     @PostMapping("/document")
-    public ResponseEntity<?> createDocument(@RequestBody DocumentCreateModel documentCreateModel) {
-        try {
-            GuestDocuments createGuestDocuments = reservationService.createDocument(documentCreateModel);
-            return new ResponseEntity<>(createGuestDocuments, HttpStatus.CREATED);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    public GuestDocuments createDocument(@RequestBody DocumentCreateModel documentCreateModel) {
+            return reservationService.createDocument(documentCreateModel);
         }
-    }
+
+
 
 
 }
+
+

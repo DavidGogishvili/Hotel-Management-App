@@ -36,7 +36,7 @@ public class UserManager implements UserDetailsService {
             roles.add(r.getRole());
         }
         user.setRolesList(roles);
-        System.out.println("User Roles: " + roles);
+        System.out.println("User " + username + " has logged in");
         return user;
     }
 

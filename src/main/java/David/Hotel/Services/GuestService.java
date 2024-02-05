@@ -8,4 +8,6 @@ public interface GuestService {
 
     Guests createGuest (GuestCreateModel guestCreateModel);
 
+
+
 }
